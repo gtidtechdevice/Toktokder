@@ -11,11 +11,12 @@ form.addEventListener("submit", async (e) => {
   const url = input.value.trim();
   if (!url) return;
 
+  // reset tampilan
   resultEl.classList.add("hidden");
   statusEl.textContent = "Lagi ngambil video, bentar...";
   button.disabled = true;
 
-  try:
+  try {
     const res = await fetch("/api/download", {
       method: "POST",
       headers: {
@@ -36,6 +37,7 @@ form.addEventListener("submit", async (e) => {
 
     const videoUrl = data.downloadUrl;
 
+    // tampilkan hasil
     videoEl.src = videoUrl;
     downloadLink.href = videoUrl;
 
@@ -48,4 +50,3 @@ form.addEventListener("submit", async (e) => {
     button.disabled = false;
   }
 });
-
